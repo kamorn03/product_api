@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "Eymv1xGlbEjF4VoBnPl8ZK3swcKjkpZuLgz0hIQpR1Y=",
+  "Source": "ProductStockAPI",
+  "BasePath": "_content/ProductStockAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

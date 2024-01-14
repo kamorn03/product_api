@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "rJ7GunCHt4uQsQmf71tXZ8Ssc8RW33iEV5mxshLByPxmv6u1+mYKh3IQ8RKNd2xb8vl/Ki1cbBY6e2MMqnWs8A==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\TheJiw\\source\\repos\\ProductStockAPI\\ProductStockAPI\\ProductStockAPI.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\TheJiw\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "C:\\Users\\TheJiw\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\TheJiw\\.nuget\\packages\\swashbuckle.aspnetcore\\6.4.0\\swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
+    "C:\\Users\\TheJiw\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.4.0\\swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
+    "C:\\Users\\TheJiw\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.4.0\\swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",
+    "C:\\Users\\TheJiw\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.4.0\\swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512"
+  ],
+  "logs": []
+}
