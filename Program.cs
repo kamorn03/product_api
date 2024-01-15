@@ -3,7 +3,16 @@ using System;
 using ProductApi.Data;
 
 var builder = WebApplication.CreateBuilder(args);
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      policy =>
+                      {
+                          policy.WithOrigins("http://localhost:4200");
+                      });
+});
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -16,6 +25,8 @@ builder.Services.AddDbContext<ProductAPIDbContext>(options =>
       options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"), new MySqlServerVersion(new Version())));
 
 var app = builder.Build();
+
+app.UseCors(MyAllowSpecificOrigins);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

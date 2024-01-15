@@ -9,7 +9,8 @@ namespace ProductApi.Data
         {
 
         }
-
         public DbSet<ProductItem> ProductItems { get; set; }
+        public DbSet<ProductGroup> productGroups { get; set; }
+        public DbSet<ProductSubGroup> productSubGroups { get; set; }
     }
 }
