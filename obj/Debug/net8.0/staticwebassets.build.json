@@ -1,8 +1,8 @@
 {
   "Version": 1,
-  "Hash": "Eymv1xGlbEjF4VoBnPl8ZK3swcKjkpZuLgz0hIQpR1Y=",
-  "Source": "ProductStockAPI",
-  "BasePath": "_content/ProductStockAPI",
+  "Hash": "g8af5HN/9FZtobSsbGXv5rJBVKDkloEMyOPr4ZokmEU=",
+  "Source": "ProductApi",
+  "BasePath": "_content/ProductApi",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
