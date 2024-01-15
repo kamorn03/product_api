@@ -44,6 +44,8 @@ public class ProductsController : ControllerBase
         return product;
     }
 
+
+    [HttpGet("{searchTerm}/search/{isActive}")]
     public IActionResult Search(string searchTerm, bool isActive)
     {
         var products = _context.ProductItems
@@ -122,24 +124,24 @@ public class ProductsController : ControllerBase
     }
 
 
-    // group and subgroup
-    [HttpGet]
+    // GET: api/Group
+     [HttpGet("/Groups")]
     public async Task<ActionResult<IEnumerable<ProductGroup>>> GetGroups()
     {
         var groups = await _context.productGroups.ToListAsync();
         return groups;
     }
 
-    // group and subgroup
-    [HttpGet]
+
+    // GET: api/SubGroup
+    [HttpGet("/SubGroups")]
     public async Task<ActionResult<IEnumerable<ProductSubGroup>>> GetSubGroups()
     {
         var subGroups = await _context.productSubGroups.ToListAsync();
         return subGroups;
     }
 
-
-    [HttpGet]
+    [HttpGet("{subGroupId}/Groups")]
     public async Task<ActionResult<IEnumerable<ProductGroup>>> GetGroupsBySubGroup(int subGroupId)
     {
         var subGroups = _context.productSubGroups.Find(subGroupId);
@@ -151,11 +153,11 @@ public class ProductsController : ControllerBase
         var groups = await _context.productGroups
        .Where(psg => psg.Id == subGroups.ProductGroupId)
        .ToListAsync();
-       
+
         return groups;
     }
 
-    [HttpGet("{groupId}")]
+    [HttpGet("{groupId}/SubGroups")]
     public async Task<ActionResult<IEnumerable<ProductSubGroup>>> GetSubGroupsByGroup(int groupId)
     {
         var subGroups = await _context.productSubGroups
