@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "qn/6ASkAXJD+PJlH96FeVI4OiQF5M2CWpqC5wVQzYIY+WmiwtXjJRMMZ9V3j40dBcyQ15k7LdKvJLu4uICf24w==",
+  "dgSpecHash": "YjLp2Ov1Lfs+m+DFmkU4GtV5cCg9oxScDSpKKsgOAPDXtJFaV4wJsMf//rgWK59K9LmvzqGlRU3p1mFaWIEdaA==",
   "success": true,
-  "projectFilePath": "D:\\ANGULAR\\ASP.Net-API-With-MySQL-master\\ProductApi\\ProductApi.csproj",
+  "projectFilePath": "D:\\ANGULAR\\ASP.Net-API-With-MySQL-master\\product_api\\ProductApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\TheJiw\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\TheJiw\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.0\\microsoft.entityframeworkcore.6.0.0.nupkg.sha512",

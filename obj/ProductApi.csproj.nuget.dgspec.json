@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\ANGULAR\\ASP.Net-API-With-MySQL-master\\ProductApi\\ProductApi.csproj": {}
+    "D:\\ANGULAR\\ASP.Net-API-With-MySQL-master\\product_api\\ProductApi.csproj": {}
   },
   "projects": {
-    "D:\\ANGULAR\\ASP.Net-API-With-MySQL-master\\ProductApi\\ProductApi.csproj": {
+    "D:\\ANGULAR\\ASP.Net-API-With-MySQL-master\\product_api\\ProductApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ANGULAR\\ASP.Net-API-With-MySQL-master\\ProductApi\\ProductApi.csproj",
+        "projectUniqueName": "D:\\ANGULAR\\ASP.Net-API-With-MySQL-master\\product_api\\ProductApi.csproj",
         "projectName": "ProductApi",
-        "projectPath": "D:\\ANGULAR\\ASP.Net-API-With-MySQL-master\\ProductApi\\ProductApi.csproj",
+        "projectPath": "D:\\ANGULAR\\ASP.Net-API-With-MySQL-master\\product_api\\ProductApi.csproj",
         "packagesPath": "C:\\Users\\TheJiw\\.nuget\\packages\\",
-        "outputPath": "D:\\ANGULAR\\ASP.Net-API-With-MySQL-master\\ProductApi\\obj\\",
+        "outputPath": "D:\\ANGULAR\\ASP.Net-API-With-MySQL-master\\product_api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\TheJiw\\AppData\\Roaming\\NuGet\\NuGet.Config",

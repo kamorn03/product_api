@@ -47,17 +47,35 @@ public class ProductsController : ControllerBase
     }
 
 
-    [HttpGet("{searchTerm}/search/{isActive}")]
-    public IActionResult Search(string searchTerm, bool isActive)
+    [HttpPost("/api/search")]
+    public IActionResult Search([FromBody] ProducSearchDto searchDto)
     {
-        var products = _context.ProductItems
-                          .Include(pi => pi.ProductGroup)
-                          .Include(pi => pi.ProductSubGroup)
-                          .Where(pi => pi.Name.Contains(searchTerm) ||
-                                        pi.ProductGroup.GroupName.Contains(searchTerm) ||
-                                        pi.ProductSubGroup.SubGroupName.Contains(searchTerm))
-                          .Where(pi => pi.IsActive == isActive)
-                          .ToList();
+        var query = _context.ProductItems
+                            .Include(pi => pi.ProductGroup)
+                            .Include(pi => pi.ProductSubGroup)
+                            .Where(pi => pi.SoftDelete != true);
+
+        if (!string.IsNullOrWhiteSpace(searchDto.name))
+        {
+            query = query.Where(pi => pi.Name.Contains(searchDto.name));
+        }
+
+        if (searchDto.groupId != null)
+        {
+            query = query.Where(pi => pi.ProductGroup.Id == searchDto.groupId);
+        }
+
+        if (searchDto.subGroupId != null)
+        {
+            query = query.Where(pi => pi.ProductSubGroup.Id == searchDto.subGroupId);
+        }
+
+        if (searchDto.isActive != null)
+        {
+            query = query.Where(pi => pi.IsActive == searchDto.isActive);
+        }
+
+        var products = query.ToList();
 
         return Ok(products);
     }
@@ -119,7 +137,8 @@ public class ProductsController : ControllerBase
         }
 
         product.IsActive = statusDto.IsActive;
-        if (product.SoftDelete) {
+        if (product.SoftDelete)
+        {
             product.SoftDelete = false;
         }
 
@@ -175,19 +194,19 @@ public class ProductsController : ControllerBase
         return subGroups;
     }
 
-    [HttpGet("/api/{subGroupId}/Groups")]
-    public async Task<ActionResult<IEnumerable<ProductGroup>>> GetGroupsBySubGroup(int subGroupId)
+    [HttpGet("{groupId}/SubGroups")]
+    public async Task<ActionResult<IEnumerable<ProductSubGroup>>> GetSubGroupsByGroup(int groupId)
     {
-        var subGroups = _context.productSubGroups.Find(subGroupId);
+        var subGroups = await _context.productSubGroups
+            .Where(psg => psg.ProductGroupId == groupId)
+            .ToListAsync();
 
         if (subGroups == null)
         {
             return NotFound();
         }
-        var groups = await _context.productGroups
-       .Where(psg => psg.Id == subGroups.ProductGroupId)
-       .ToListAsync();
 
-        return groups;
+        return subGroups;
     }
+
 }
