@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProductApi.Data;
 using ProductApi.Models;
+using ProductApi.Dtos;
+
 
 [ApiController]
 [Route("api/[controller]")]
@@ -107,7 +109,7 @@ public class ProductsController : ControllerBase
 
     // PATCH: api/products/1/update-status
     [HttpPatch("{id}/update-status")]
-    public IActionResult UpdateProductStatus(int id, [FromBody] bool isActive)
+    public async Task<IActionResult> UpdateProductStatusAsync(int id, [FromBody] ProductStatusUpdateDto statusDto)
     {
         var product = _context.ProductItems.Find(id);
 
@@ -116,16 +118,46 @@ public class ProductsController : ControllerBase
             return NotFound();
         }
 
-        product.IsActive = isActive;
+        product.IsActive = statusDto.IsActive;
+        if (product.SoftDelete) {
+            product.SoftDelete = false;
+        }
 
         _context.SaveChanges();
 
-        return Ok(product);
+        var products = await _context.ProductItems
+            .Include(pi => pi.ProductGroup)
+            .Include(pi => pi.ProductSubGroup)
+            .ToListAsync();
+
+        return Ok(products);
+    }
+
+    [HttpPatch("{id}/soft-delete")]
+    public async Task<IActionResult> SoftDeleteProductStatusAsync(int id)
+    {
+        var product = _context.ProductItems.Find(id);
+
+        if (product == null)
+        {
+            return NotFound();
+        }
+
+        product.SoftDelete = true;
+
+        _context.SaveChanges();
+
+        var products = await _context.ProductItems
+            .Include(pi => pi.ProductGroup)
+            .Include(pi => pi.ProductSubGroup)
+            .ToListAsync();
+
+        return Ok(products);
     }
 
 
     // GET: api/Group
-     [HttpGet("/api/Groups")]
+    [HttpGet("/api/Groups")]
     public async Task<ActionResult<IEnumerable<ProductGroup>>> GetGroups()
     {
         var groups = await _context.productGroups.ToListAsync();
