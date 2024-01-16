@@ -125,7 +125,7 @@ public class ProductsController : ControllerBase
 
 
     // GET: api/Group
-     [HttpGet("/Groups")]
+     [HttpGet("/api/Groups")]
     public async Task<ActionResult<IEnumerable<ProductGroup>>> GetGroups()
     {
         var groups = await _context.productGroups.ToListAsync();
@@ -134,14 +134,16 @@ public class ProductsController : ControllerBase
 
 
     // GET: api/SubGroup
-    [HttpGet("/SubGroups")]
+    [HttpGet("/api/SubGroups")]
     public async Task<ActionResult<IEnumerable<ProductSubGroup>>> GetSubGroups()
     {
-        var subGroups = await _context.productSubGroups.ToListAsync();
+        var subGroups = await _context.productSubGroups
+                                .Include(ps => ps.ProductGroup)
+                                .ToListAsync();
         return subGroups;
     }
 
-    [HttpGet("{subGroupId}/Groups")]
+    [HttpGet("/api/{subGroupId}/Groups")]
     public async Task<ActionResult<IEnumerable<ProductGroup>>> GetGroupsBySubGroup(int subGroupId)
     {
         var subGroups = _context.productSubGroups.Find(subGroupId);
@@ -155,20 +157,5 @@ public class ProductsController : ControllerBase
        .ToListAsync();
 
         return groups;
-    }
-
-    [HttpGet("{groupId}/SubGroups")]
-    public async Task<ActionResult<IEnumerable<ProductSubGroup>>> GetSubGroupsByGroup(int groupId)
-    {
-        var subGroups = await _context.productSubGroups
-            .Where(psg => psg.ProductGroupId == groupId)
-            .ToListAsync();
-
-        if (subGroups == null)
-        {
-            return NotFound();
-        }
-
-        return subGroups;
     }
 }
